@@ -6,24 +6,24 @@ __date__ = '2018/2/9 10:30'
 from sys import exit
 from random import randint
 
-class Game(object):
+class Map(object):
 
-    def __init__(self, start):
+    def __init__(self):
         self.quips = [
             "你挂了",
              "Game Over.",
              "你像个失败者.",
              "江湖险恶，英雄请重新来过!"
         ]
-        self.start = start
+        # self.start = start
 
-    def play(self):
-        next = self.start
-
-        while True:
-            print "\n************************"
-            room = getattr(self, next)
-            next = room()
+    # def play(self):
+    #     next = self.start
+    #
+    #     while True:
+    #         print "\n************************"
+    #         room = getattr(self, next)
+    #         next = room()
 
 
     def death(self):
@@ -177,10 +177,25 @@ class Game(object):
             print "希望你在这里能有些许收获,"
             print "这是我的荣幸，"
             print "同时也是我最大的期望，是我之所以坚持的理由！"
-            print "恭喜你.  你成功了!"
+            print "恭喜你，你成功了!"
             print "***************************"
             exit(0)
 
 
-a_game = Game("central_corridor")
-a_game.play()
+class Engine(object):
+    def __init__(self,start):
+        self.start = start
+
+    def play(self):
+        next = self.start
+
+        while True:
+            print "\n************************"
+            room = getattr(Map(), next)
+            next = room()
+
+
+
+Engine("central_corridor").play()
+# a_game = Game("central_corridor")
+# a_game.play()
